@@ -3,7 +3,8 @@ import GoogleButton from 'react-google-button'
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { userAuth } from '../../AuthProvider/AuthProvider';
-import createUser from '../../helper/UserMange/UserMange';
+import createUser from '../../helper/UserMange/UserMange'
+
 
 const SingupFrom = ({ accaunts, roll }) => {   
     const location =useLocation()
@@ -26,7 +27,7 @@ const SingupFrom = ({ accaunts, roll }) => {
         fetch(url, {
             method: "POST",
             body: formData,
-        })
+         })
             .then(res => res.json())
             .then(data => {
                 const photoURL = data.data.display_url
@@ -34,25 +35,20 @@ const SingupFrom = ({ accaunts, roll }) => {
                     displayName: userName,
                     photoURL: photoURL,
 
-                }
+                }              
                 createUserEmail(email, password)
                     .then(result => {
-                        const user = result.user
-                        console.log(user, userUpdateData);
+                        const user = result.user                       
                         updateUserInfo(userUpdateData)
-                            .then(() => {
-                                console.log('update user '); 
-                                const userInfo ={
-                                    userRoll,
-                                    userName,
-                                    photoURL,
-                                    email,
-                                    password,
-                                   }  
-                                createUser(userInfo);
-                                form.reset();     
-                                navigate(from,{replace:true})
-                            }).catch(error => console.error(error))
+                            .then(() => {  
+                  
+                               createUser(userRoll,userName,photoURL,email,password)
+                                   navigate(from,{replace:true})
+                                form.reset();   
+                            }).catch(error => {
+                                console.error(error)
+                                toast.error(error.message);
+                            })
                     })
                     .catch(error => {
                         console.error(error)
@@ -60,7 +56,7 @@ const SingupFrom = ({ accaunts, roll }) => {
                     })
             })
 
-
+         
 
     }
     return (

@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import SingupFrom from './SingupFrom';
 
+
 const SingnUp = () => {
     const [seller, setSeller] = useState(false)
     const [buyer, setBuyer] = useState(false)
     const [accaunts, setAccaunt] = useState('')
-    const [roll,setRoll]=useState('')
+    const [roll,setRoll]=useState('');
 
     const handelSignUpSeller = (event) => {
         event.preventDefault()

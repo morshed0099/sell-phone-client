@@ -8,7 +8,7 @@ const Header = () => {
     const [catagories, setCategories] = useState([])
 
     useEffect(() => {
-        fetch('phone.json')
+        fetch('http://localhost:5000/categories')
             .then(res => res.json())
             .then(data => setCategories(data))
     }, [])
