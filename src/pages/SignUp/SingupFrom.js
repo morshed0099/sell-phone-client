@@ -1,12 +1,18 @@
 import React, { useContext } from 'react';
 import GoogleButton from 'react-google-button'
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { userAuth } from '../../AuthProvider/AuthProvider';
+import createUser from '../../helper/UserMange/UserMange';
 
-const SingupFrom = ({ accaunts, roll }) => {
-    const { createUserEmail, updateUserInfo } = useContext(userAuth)
-    const handelSignup = (event) => {
+const SingupFrom = ({ accaunts, roll }) => {   
+    const location =useLocation()
+    const navigate=useNavigate()
+    const from =location.state?.from?.pathname || "/"
+    const { createUserEmail, updateUserInfo} = useContext(userAuth)
+       const userRoll=roll;  
+
+    const handelSignup = (event) => {        
         event.preventDefault()
         const form = event.target;
         const userName = form.name.value;
@@ -35,8 +41,17 @@ const SingupFrom = ({ accaunts, roll }) => {
                         console.log(user, userUpdateData);
                         updateUserInfo(userUpdateData)
                             .then(() => {
-                                console.log('update user ')
-                                form.reset();
+                                console.log('update user '); 
+                                const userInfo ={
+                                    userRoll,
+                                    userName,
+                                    photoURL,
+                                    email,
+                                    password,
+                                   }  
+                                createUser(userInfo);
+                                form.reset();     
+                                navigate(from,{replace:true})
                             }).catch(error => console.error(error))
                     })
                     .catch(error => {
@@ -68,7 +83,7 @@ const SingupFrom = ({ accaunts, roll }) => {
                                 <label className="label">
                                     <span className="label-text">Photo</span>
                                 </label>
-                                <input name="photoURL" type="file" placeholder="your photo" className="input input-bordered" />
+                                <input name="photoURL" type="file" placeholder="your photo" required className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
