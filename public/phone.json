@@ -1,0 +1,11 @@
+[
+    {   "category_id":1,
+        "category_name":"I Phone"
+    },
+    {   "category_id":2,
+        "category_name":"Lenevo"
+    },
+    {   "category_id":3,
+        "category_name":"Oppo"
+    }
+]

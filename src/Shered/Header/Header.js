@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
+    const [catagories, setCategories] = useState([])
+    useEffect(() =>{
+              fetch('phone.json')
+              .then(res=>res.json())
+              .then(data=>setCategories(data))
+    }, [])
     const menuItem =
         <>
             <Link to='/'>Home</Link>
             <Link to='/login'>Login</Link>
             <Link to='/signup'>signUp</Link>
+
         </>
     return (
         <nav>
@@ -18,6 +25,17 @@ const Header = () => {
                         </label>
                         <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                             <li>{menuItem}</li>
+                            <li tabIndex={0}>
+                                <span>
+                                    Category
+                                    <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
+                                </span>
+                                <ul className="p-2 z-50 bg-white">
+                                    {
+                                        catagories.map(category => <li><Link to={`/category/${category.category_id}`}>{category.category_name}</Link></li>)
+                                    }
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                     <Link to='/' className="btn btn-ghost normal-case text-xl"><span className='text-orange-600 mr-1'>Sell</span> Phone</Link >
@@ -25,6 +43,17 @@ const Header = () => {
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">
                         <li>{menuItem}</li>
+                        <li tabIndex={0}>
+                            <span className="justify-between">
+                                Category
+                                <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+                            </span>
+                            <ul className="p-2 z-50 bg-white">
+                                {
+                                    catagories.map(category => <li><Link to={`/category/${category.category_id}`}>{category.category_name}</Link></li>)
+                                }
+                            </ul>
+                        </li>
                     </ul>
                 </div>
                 <div className="navbar-end">
