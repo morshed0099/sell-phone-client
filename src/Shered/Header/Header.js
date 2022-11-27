@@ -39,7 +39,7 @@ const Header = () => {
 
         </>
     return (
-        <nav>
+        <nav className='sticky top-0 z-50'>
             <div className="navbar bg-base-100">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -74,7 +74,7 @@ const Header = () => {
                             </span>
                             <ul className="p-2 z-50 bg-white">
                                 {
-                                    catagories.map(category => <li><Link to={`/category/${category.category_id}`}>{category.category_name}</Link></li>)
+                                    catagories.map(category => <li><Link to={`/category/${category._id}`}>{category.category_name}</Link></li>)
                                 }
                             </ul>                            
                         </li>
@@ -82,7 +82,7 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Get started</a>
+                <label htmlFor="my-drawer-4" className="drawer-button btn btn-primary">Open drawer</label>
                 </div>
             </div>
         </nav>

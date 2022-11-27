@@ -29,7 +29,7 @@ export const router=createBrowserRouter([
             {
                 path:'/category/:id',
                 loader:({params})=>{ 
-                return fetch(`phone.json/category/:id${params.id}`)
+                return fetch(`http://localhost:5000/category/${params.id}`)
                },
                 element:<Categories></Categories>
             },

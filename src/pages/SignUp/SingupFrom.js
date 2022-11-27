@@ -1,19 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import GoogleButton from 'react-google-button'
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { userAuth } from '../../AuthProvider/AuthProvider';
-import createUser from '../../helper/UserMange/UserMange'
 
 
-const SingupFrom = ({ accaunts, roll }) => {   
+const SingupFrom = ({ accaunts, roll }) => { 
+    const [loader,setLoader]=useState(false) 
+   
     const location =useLocation()
     const navigate=useNavigate()
     const from =location.state?.from?.pathname || "/"
-    const { createUserEmail, updateUserInfo} = useContext(userAuth)
+    const {logOut,createUserEmail, updateUserInfo,signWithGoogle} = useContext(userAuth)
        const userRoll=roll;  
-
-    const handelSignup = (event) => {        
+   
+    const handelSignup = (event) => {  
+        setLoader(true)      
         event.preventDefault()
         const form = event.target;
         const userName = form.name.value;
@@ -47,7 +49,7 @@ const SingupFrom = ({ accaunts, roll }) => {
                                 form.reset();   
                             }).catch(error => {
                                 console.error(error)
-                                toast.error(error.message);
+                                toast.error(error.message);                                
                             })
                     })
                     .catch(error => {
@@ -55,10 +57,50 @@ const SingupFrom = ({ accaunts, roll }) => {
                         toast.error(error.message)
                     })
             })
-
-         
-
     }
+
+   const googleSingUp=(event)=>{
+    event.preventDefault()
+    signWithGoogle()
+    .then(result=>{
+        const user=result.user
+        createUser(userRoll,user.userName,user.photoURL,user.email,user.password) 
+        navigate(from,{replace:true})      
+     }).catch(error=>{        
+        console.error(error)
+        toast.error(error.message)
+    }
+        )
+    }
+
+    const createUser=(userRoll,userName,photoURL,email,password)=>{   
+        const userInfo ={
+            userRoll,
+            userName,  
+            photoURL,  
+            email,
+            password,
+            status:false,
+           }  
+        const user=userInfo
+        console.log(user)
+        fetch('http://localhost:5000/users',{
+            method:"POST",
+            headers:{"content-type":"application/json"},
+            body:JSON.stringify(user),
+        }).then(res=>res.json())
+        .then(data=>{
+            console.log(data.message);
+            if(data.acknowledged){
+             toast.success('user create sucessfully')
+             setLoader(false)
+            }else{
+                 logOut()
+                 navigate('/login')
+                toast.error('email alredy used please login')               
+                }
+             })    
+    } 
     return (
         <div className="hero ">
             <div className="hero-content flex-col lg:flex-row-reverse">
@@ -97,12 +139,12 @@ const SingupFrom = ({ accaunts, roll }) => {
                                 </label>
                             </div>
                             <div className="form-control mt-6">
-                                <button value='submit' className="btn btn-primary">Login</button>
+                                <button value='submit' className="btn btn-primary">{loader===true?'Loading....':'SingUp'}</button>
                             </div>
                         </div>
                     </form>
                     <div className="divider">OR</div>
-                    <GoogleButton className='mx-auto  mb-3 rounded-full'></GoogleButton>
+                    <GoogleButton onClick={googleSingUp} className='mx-auto  mb-3 rounded-full'></GoogleButton>
                 </div>
             </div>
         </div>

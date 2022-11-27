@@ -7,7 +7,7 @@ const SingnUp = () => {
     const [seller, setSeller] = useState(false)
     const [buyer, setBuyer] = useState(false)
     const [accaunts, setAccaunt] = useState('')
-    const [roll,setRoll]=useState('');
+    const [roll,setRoll]=useState('buyer');
 
     const handelSignUpSeller = (event) => {
         event.preventDefault()
@@ -17,7 +17,7 @@ const SingnUp = () => {
         setRoll('seller')
         toast.success('for seller')
     }
-    const handelSignUpBeller = (event) => {
+    const handelSignUpBuyer = (event) => {
         event.preventDefault()
         const accaunt = (event.target.innerText);
         setAccaunt(accaunt);
@@ -30,7 +30,7 @@ const SingnUp = () => {
         <div>
             <div className='flex justify-center items-center mb-8 mt-6'>                
                 <button onClick={handelSignUpSeller} className='btn btn-primary mr-3 p-2'>open accaunt for seller</button>
-                <button onClick={handelSignUpBeller} className='btn btn-secondary p-2'>open accaunt for Buyer</button>
+                <button onClick={handelSignUpBuyer} className='btn btn-secondary p-2'>open accaunt for Buyer</button>
             </div>
 
             { seller || buyer ?

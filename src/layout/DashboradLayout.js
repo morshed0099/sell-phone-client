@@ -5,7 +5,7 @@ import Header from '../Shered/Header/Header';
 
 const DashboradLayout = () => {
     return (
-        <div>
+        <div>            
             <Header></Header>
             <Outlet></Outlet>
             <Footer></Footer>
