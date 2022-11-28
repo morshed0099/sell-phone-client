@@ -2,6 +2,7 @@ import React from 'react';
 import ReactTimeAgo from 'react-time-ago';
 
 const ProductCard = ({ product,setBook}) => {
+    
     console.log(product);
     const { age, category_id, condition, details, imgae_url, location, newPrice, oldprice, post_time, produnctName, seller, _id } = product
 

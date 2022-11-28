@@ -3,8 +3,8 @@ import app from '../firebase/firebase.init';
 import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from 'firebase/auth'
 
 
- export const userAuth=createContext()
-const AuthProvider = ({children}) => {
+ export const userAuth=createContext();
+    const AuthProvider = ({children}) => {
     const [user,setUser]=useState('')
     const [loader,setLoader]=useState(true)
     console.log(user,'adfadfaf')
