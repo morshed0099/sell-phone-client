@@ -22,8 +22,7 @@ const ProductBookModal = ({book}) => {
         setPhoneNumber(event.target.value);
 
     }
-    const bookingProduct=(book,buyer)=>{
-        console.log(buyer);
+    const bookingProduct=(book,buyer)=>{     
         const bookdata={
             book,
             buyer
@@ -55,9 +54,11 @@ const ProductBookModal = ({book}) => {
             <div className="modal">
                 <div className="modal-box relative">
                     <label htmlFor="produnctModal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <input type="text" defaultValue={book.produnctName} placeholder="Type here" className="input input-bordered w-full p-4 m-2" />
-                    <input type="text" defaultValue={user?.displayName} placeholder="Type here" className="input input-bordered w-full p-4 m-2" />
-                    <input type="text" defaultValue={user?.email} placeholder="Type here" className="input input-bordered w-full p-4 m-2" />
+                    <input type="text" defaultValue={book.produnctName} readOnly placeholder="Type here" className="input input-bordered w-full p-4 m-2" />
+                    <input type="text" defaultValue={user?.displayName} readOnly placeholder="Type here" className="input input-bordered w-full p-4 m-2" />
+                    <input type="text" defaultValue={user?.email} readOnly placeholder="Type here" className="input input-bordered w-full p-4 m-2" />
+                    <input type="text" defaultValue={book.newPrice} readOnly placeholder="Type here" className="input input-bordered w-full p-4 m-2" />
+                    <input type="text" defaultValue={book.location} readOnly placeholder="Type here" className="input input-bordered w-full p-4 m-2" />
                     <input type="text" onBlur={setPhone} name='number'  placeholder="Type here phone number" className="input input-bordered w-full p-4 m-2" />
                     <label htmlFor="produnctModal" onClick={()=>bookingProduct(book,buyer)} className='btn btn-primary w-full'>Confirm Booking</label>
                 </div>

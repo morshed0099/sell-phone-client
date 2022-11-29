@@ -9,18 +9,20 @@ import TimeAgo from 'javascript-time-ago'
 
 import en from 'javascript-time-ago/locale/en.json'
 import ru from 'javascript-time-ago/locale/ru.json'
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 TimeAgo.addDefaultLocale(en)
 TimeAgo.addLocale(ru)
-
-
+const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Toaster/> 
+   <QueryClientProvider  client={queryClient}>
+   <Toaster/> 
       <AuthProvider>
       <App /> 
       </AuthProvider>
+   </QueryClientProvider>
   </React.StrictMode>
 );
 

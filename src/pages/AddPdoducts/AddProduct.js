@@ -46,7 +46,7 @@ const AddProduct = () => {
            const product={
             produnctName,
             imgae_url,
-           seller:[{"name":user.displayName,"email":user.email,"image":user.photoURL}],
+           seller:[{"name":user.displayName,"email":user.email,"image":user.photoURL,status:user.status}],
             category_id:selectOption,
             oldprice,
             newPrice,

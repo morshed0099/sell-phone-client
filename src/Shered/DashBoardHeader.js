@@ -1,21 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
-import { userAuth } from '../../AuthProvider/AuthProvider';
+import { userAuth } from '../AuthProvider/AuthProvider';
 
-const Header = () => {
-    const { user,logOut } = useContext(userAuth)
+const DashBoardHeader = () => {
+       const {user,logOut}=useContext(userAuth)    
     const [catagories, setCategories] = useState([])
     const[singUser,setSignUser]=useState('')
-    console.log(singUser.userRoll,'haaa');
+  
     useEffect(()=>{
         fetch(`http://localhost:5000/users?email=${user?.email}`)
         .then(res=>res.json())
         .then(data=>setSignUser(data))
     },[user])
-    
-
-    
 
     useEffect(() => {
         fetch('http://localhost:5000/categories')
@@ -32,18 +29,31 @@ const Header = () => {
     }
     const menuItem =
         <>
-            <Link to='/'>Home</Link>
+            <Link to='/'>clientside-Home</Link>
+            <Link to='/dashboard'>DashBorad</Link>
+            <Link to='/dashboard/allseller'>All Seller</Link>
+            <Link to='/dashboard/allbuyer'>All Buyer</Link>
             {
-                user?.email ?
+                singUser?.email ?
                     <>
-                        <Link to='/dashboard'>Dashboard</Link>
-                                             
+                        {
+                            
+                        }
+                        {
+                            singUser?.userRoll==='admin'?<><Link to='/dashboard/alluser'>All Seller</Link></>:<></>
+                        }
+                       {
+                        singUser?.userRoll==='seller'? <><Link to='/addproduct'>AddProduct</Link> <Link to='/dashboard/myproduct'>MyAddedProduct</Link></>:<></>
+                       }                       
                         <button onClick={handelLout} className='btn btn-ghost'>logOut</button>
                     </>
                     :
                     <>
                         <Link to='/login'>Login</Link>
                         <Link to='/signup'>signUp</Link>
+                        {
+                        singUser?.userRoll==="seller"? <Link to='/addproduct'>AddProduct</Link>:""
+                       }  
                     </>
             }
          
@@ -96,4 +106,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default DashBoardHeader;

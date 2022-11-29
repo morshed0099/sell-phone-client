@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
+import GoogleButton from 'react-google-button';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { userAuth } from '../../AuthProvider/AuthProvider';
 
 const Login = () => {
-    const {loginEmail}=useContext(userAuth)
+    const {loginEmail,signWithGoogle}=useContext(userAuth)
     const location=useLocation()
     const from =location.state?.form?.pathname || "/"
     const navigate=useNavigate()
@@ -21,9 +22,51 @@ const Login = () => {
         }).catch(error=>{
             console.error(error)
             toast.error(error.message);
-        })
+        })}
 
-    }
+    
+      const googleSingUp=(event)=>{
+        event.preventDefault()
+        signWithGoogle()
+        .then(result=>{
+            const user=result.user  
+            const userRoll="seller"
+            createUser(userRoll,user.userName,user.photoURL,user.email,user.password) 
+            toast.success('login succesfully')          
+            navigate(from,{replace:true})      
+         }).catch(error=>{        
+            console.error(error)
+            toast.error(error.message)
+        }
+         )
+      } 
+       
+      const createUser=(userRoll,userName,photoURL,email,password)=>{   
+        const userInfo ={
+            userRoll,
+            userName,  
+            photoURL,  
+            email,
+            password,
+            status:false,
+           }  
+        const user=userInfo
+        console.log(user)
+        fetch('http://localhost:5000/users',{
+            method:"POST",
+            headers:{"content-type":"application/json"},
+            body:JSON.stringify(user),
+        }).then(res=>res.json())
+        .then(data=>{
+            console.log(data.message);
+            if(data.acknowledged){
+             toast.success('user create sucessfully')             
+            }else{ 
+                toast.success('login success')               
+                }
+             })    
+    } 
+
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row-reverse">
@@ -54,6 +97,8 @@ const Login = () => {
                             </div>
                         </div>
                     </form>
+                    <div className="divider">OR</div>
+                    <GoogleButton onClick={googleSingUp} className='mx-auto  mb-3 rounded-full'></GoogleButton>
                 </div>
             </div>
         </div>

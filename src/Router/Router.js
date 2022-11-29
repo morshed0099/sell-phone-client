@@ -8,6 +8,10 @@ import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
 import SingnUp from "../pages/SignUp/SingnUp";
 import ProductDetails from "../pages/Home/ProductDetalis"
+import MyAddedProduct from "../pages/MyAddedProduct/MyAddedProduct";
+import Allseller from "../pages/Alluser/Allseller";
+import AllBuyer from "../pages/Alluser/AllBuyer";
+import PrivateRout from "./PrivateRout";
 
 
 export const router=createBrowserRouter([
@@ -34,18 +38,15 @@ export const router=createBrowserRouter([
                },
                 element:<Categories></Categories>
             },
-            {
-                path:'/addproduct',
-                element:<AddProduct></AddProduct>
-            },
+            
            {
             path:'/product/:id',
             loader:({params})=>{
              return fetch(`http://localhost:5000/product/${params.id}`)
             },
             element:<ProductDetails></ProductDetails>
-           }
-           
+           },
+         
         ]
     },
     {
@@ -54,8 +55,25 @@ export const router=createBrowserRouter([
         children:[
             {
                 path:'/dashboard',
-                element:<Dashborad></Dashborad>
-            }
+                element:<PrivateRout><Dashborad></Dashborad></PrivateRout>
+            },
+            {
+                path:'/dashboard/myproduct',
+                element:<MyAddedProduct></MyAddedProduct>
+             },
+             {
+                path:'/dashboard/allseller',
+                element:<Allseller></Allseller>
+             },
+             {
+                path:'/dashboard/allbuyer',
+                element:<AllBuyer></AllBuyer>
+             },
+             {
+                path:'/dashboard/addproduct',
+                element:<AddProduct></AddProduct>
+            },
+               
         ]
     }
 
