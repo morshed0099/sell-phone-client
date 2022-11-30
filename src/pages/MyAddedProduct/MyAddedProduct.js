@@ -61,7 +61,7 @@ const MyAddedProduct = () => {
         })
     }
     return (
-        <div>
+        <div className=''>
             <h1>Your ALL Product</h1>
           <div className='m-6 p-4 gap-4 mx-auto grid grid-cols-1  md:grid-cols-2'>
           {

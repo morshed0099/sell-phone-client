@@ -4,15 +4,9 @@ import { Link } from 'react-router-dom';
 import { userAuth } from '../AuthProvider/AuthProvider';
 
 const DashBoardHeader = () => {
-       const {user,logOut}=useContext(userAuth)    
+    const { user, logOut, loader } = useContext(userAuth)
     const [catagories, setCategories] = useState([])
-    const[singUser,setSignUser]=useState('')
-  
-    useEffect(()=>{
-        fetch(`http://localhost:5000/users?email=${user?.email}`)
-        .then(res=>res.json())
-        .then(data=>setSignUser(data))
-    },[user])
+
 
     useEffect(() => {
         fetch('http://localhost:5000/categories')
@@ -20,44 +14,39 @@ const DashBoardHeader = () => {
             .then(data => setCategories(data))
     }, [])
 
-    const handelLout=(event)=>{
-          event.preventDefault()
-          logOut()
-          .then(()=>{
-            toast.success('logOut success')
-          }).catch(error=>console.error(error))
+
+    const handelLout = (event) => {
+        event.preventDefault()
+        logOut()
+            .then(() => {
+                toast.success('logOut success')
+            }).catch(error => console.error(error))
+    }
+
+    if (loader) {
+        <h1>loading</h1>
     }
     const menuItem =
         <>
-                 
-            <Link to='/dashboard/allseller'>All Seller</Link>
-            <Link to='/dashboard/allbuyer'>All Buyer</Link>
-            <Link to='/dashboard/myproduct'>MyAddedProduct</Link>
-            <Link to='/dashboard/addproduct'>AddProduct</Link>
-            <Link to='/dashboard/wishlist'>MyWishList</Link>            
-            <Link to='/dashboard/order'>MyOrder</Link>            
+            <Link to='/'>Home</Link>
             {
                 user?.email ?
-                    <>                       
-                        {/* {
-                            singUser?.userRoll==='admin'?<><Link to='/dashboard/alluser'>All Seller</Link></>:<></>
-                        } */}
-                       {/* {
-                        singUser?.userRoll==='seller'? <><Link to='/dashboard/addproduct'>AddProduct</Link> <Link to='/dashboard/myproduct'>MyAddedProduct</Link></>:<></>
-                       }                        */}
+                    <>
+
+                        <Link to='/dashboard'>Dashboard</Link>
                         <button onClick={handelLout} className='btn btn-ghost'>logOut</button>
                     </>
                     :
                     <>
+
                         <Link to='/login'>Login</Link>
-                        <Link to='/signup'>signUp</Link>                       
-                        {/* {
-                        singUser?.userRoll==="seller"? <Link to='/dashboard/addproduct'>AddProduct</Link>:""
-                       }   */}
+                        <Link to='/signup'>signUp</Link>
+
                     </>
             }
-         
+
         </>
+
     return (
         <nav className='sticky top-0 z-50'>
             <div className="navbar bg-base-100">
@@ -68,7 +57,17 @@ const DashBoardHeader = () => {
                         </label>
                         <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
 
-                            
+                            <li tabIndex={0}>
+                                <span>
+                                    Category
+                                    <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
+                                </span>
+                                <ul className="p-2 z-50 bg-white">
+                                    {
+                                        catagories.map(category => <li><Link to={`/category/${category.category_id}`}>{category.category_name}</Link></li>)
+                                    }
+                                </ul>
+                            </li>
                             <li>{menuItem}</li>
                         </ul>
                     </div>
@@ -77,10 +76,21 @@ const DashBoardHeader = () => {
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">
 
-                       
+                        <li tabIndex={0}>
+                            <span className="justify-between">
+                                Category
+                                <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+                            </span>
+                            <ul className="p-2 z-50 bg-white">
+                                {
+                                    catagories.map(category => <li><Link to={`/category/${category._id}`}>{category.category_name}</Link></li>)
+                                }
+                            </ul>
+                        </li>
                         <li>{menuItem}</li>
                     </ul>
-                </div>                
+                </div>
+
             </div>
         </nav>
     );

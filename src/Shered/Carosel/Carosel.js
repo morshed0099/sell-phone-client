@@ -13,6 +13,7 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";
+import { Link } from "react-router-dom";
 
 const Carosel = () => {
     return (
@@ -36,9 +37,9 @@ const Carosel = () => {
                         <div className="hero-content flex-col lg:flex-row">
                             <img alt="" src={img} className="lg:w-1/2" />
                             <div>
-                                <h1 className="text-5xl font-bold">Box Office News!</h1>
-                                <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                                <button className="btn btn-primary">Get Started</button>
+                                <h1 className="text-5xl font-bold">Sell Here And Buy Here!</h1>
+                                <p className="py-6">sell old one and buy another one </p>
+                                <button className="btn btn-primary"><Link to='login'>Just SignUp</Link></button>
                             </div>
                         </div>
                     </div>
@@ -48,9 +49,9 @@ const Carosel = () => {
                         <div className="hero-content flex-col lg:flex-row">
                             <img alt="" src={img1} className="lg:w-1/2" />
                             <div>
-                                <h1 className="text-5xl font-bold">Box Office News!</h1>
-                                <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                                <button className="btn btn-primary">Get Started</button>
+                            <h1 className="text-5xl font-bold">Sell Here And Buy Here!</h1>
+                                <p className="py-6">sell old one and buy another one </p>
+                                <button className="btn btn-primary"><Link to='login'>Just SignUp</Link></button>
                             </div>
                         </div>
                     </div>
@@ -60,9 +61,9 @@ const Carosel = () => {
                         <div className="hero-content flex-col lg:flex-row">
                             <img alt="" src={img2} className="lg:w-1/2 h-[300px]" />
                             <div>
-                                <h1 className="text-5xl font-bold">Box Office News!</h1>
-                                <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                                <button className="btn btn-primary">Get Started</button>
+                            <h1 className="text-5xl font-bold">Sell Here And Buy Here!</h1>
+                                <p className="py-6">sell old one and buy another one </p>
+                                <button className="btn btn-primary"><Link to='login'>Just SignUp</Link></button>
                             </div>
                         </div>
                     </div>

@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { Toaster } from 'react-hot-toast';
 import AuthProvider from './AuthProvider/AuthProvider';
 import TimeAgo from 'javascript-time-ago'
-
+import { ProSidebarProvider } from 'react-pro-sidebar';
 import en from 'javascript-time-ago/locale/en.json'
 import ru from 'javascript-time-ago/locale/ru.json'
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -20,7 +20,9 @@ root.render(
    <QueryClientProvider  client={queryClient}>
    <Toaster/> 
       <AuthProvider>
+      <ProSidebarProvider>
       <App /> 
+    </ProSidebarProvider>
       </AuthProvider>
    </QueryClientProvider>
   </React.StrictMode>

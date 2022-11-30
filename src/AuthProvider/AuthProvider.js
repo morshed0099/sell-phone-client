@@ -7,9 +7,15 @@ import { useQuery } from 'react-query';
  export const userAuth=createContext();
     const AuthProvider = ({children}) => {
     const [user,setUser]=useState('')
+    const [singuser,setSignUser]=useState('')
     const [loader,setLoader]=useState(true) 
    
-
+     useEffect(()=>{
+        fetch(`http://localhost:5000/users?email=${user?.email}`)
+        .then(res=>res.json())
+        .then(data=>setSignUser(data))
+     },[user?.email])
+     console.log(singuser,'line 18');
       const auth=getAuth(app);
       const googleAuth=new GoogleAuthProvider()
     const createUserEmail=(email,password)=>{
@@ -46,6 +52,7 @@ import { useQuery } from 'react-query';
         loginEmail,
         loader,
         signWithGoogle,
+        singuser,
      
     }
     return (

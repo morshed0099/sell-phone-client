@@ -12,7 +12,7 @@ const Wishlist = ({ wish, setBook }) => {
             <div className="card-body">
                 <h2 className="card-title">{produnctName}!</h2>
                 <p>{details}</p>
-                <p className='font-bold text-indigo-400'><span>{time} - <ReactTimeAgo date={date} />  </span></p>
+                <p className='font-bold text-indigo-400'><span><ReactTimeAgo date={date} /></span></p>
                 <div>
                     <h2 className='mb-3 text-2xl font-bold'>Seller</h2>
                     <div className='flex  items-center'>

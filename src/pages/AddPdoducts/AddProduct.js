@@ -4,10 +4,11 @@ import toast from 'react-hot-toast';
 import { userAuth } from '../../AuthProvider/AuthProvider';
 
 const AddProduct = () => {     
-    const { user } = useContext(userAuth)
+    const { user,singuser} = useContext(userAuth)
     const [categories,setCategories]=useState([])
     const[selectOption,setSelctOption]=useState('')
     const [loader,setLoader]=useState(false)
+    console.log(singuser[0].status,'line 11');
  
     const date=new Date()
     const time=moment().format("MMM Do YY")
@@ -46,7 +47,7 @@ const AddProduct = () => {
            const product={
             produnctName,
             imgae_url,
-           seller:[{"name":user.displayName,"email":user.email,"image":user.photoURL,status:user.status}],
+           seller:[{"name":user.displayName,"email":user.email,"image":user.photoURL,status:singuser[0].status}],
             category_id:selectOption,
             oldprice,
             newPrice,
@@ -75,13 +76,8 @@ const addProduct =(product,form)=>{
 }
 
     return (
-        <div className="hero ">
-            <div className="hero-content flex-col lg:flex-row-reverse">
-                <div className="text-center  sticky top-14 hidden md:block  -mt-12">
-                    <h1 className="text-4xl font-bold ">wellcome <span className='text-orange-600'> {user?.displayName}</span></h1>
-                    <h1 className="text-3xl font-bold ">Add Your Product</h1>
-                   {/* <span>{time} ago <ReactTimeAgo  date={date} locale="en-US" timeStyle="twitter"/></span> */}
-                </div>
+        <div className="hero p-9 ">
+            <div className="">               
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <form onSubmit={handelProduct}>
                         <div className="card-body">
@@ -108,12 +104,10 @@ const addProduct =(product,form)=>{
                                     <span className="label-text">Category</span>
                                 </label>
                                 <select onChange={handel} className="select select-bordered w-full">   
-                                  <option value="" selected>select your category</option>                                
-                                   
+                                  <option  selected>select your category</option> 
                                    {
-                                    categories?.map((category,i)=><option key={category.category_id} value={category._id}>{category.category_name}</option>)
-                                   }
-                                                                      
+                                    categories?.map((category,i)=><option key={i} value={category._id}>{category.category_name}</option>)
+                                   }                              
                                 </select>
                             </div>
                             <div className="form-control">

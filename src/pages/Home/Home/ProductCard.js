@@ -13,7 +13,7 @@ const ProductCard = ({ product, setBook,handelWishList }) => {
         setBook(product);
     }
     return (
-        <div className="card card-compact   shadow-xl">
+        <div className="card card-compact    shadow-xl">
             <figure><img src={imgae_url} className='h-[200px] w-[100%]' alt="Shoes" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{produnctName}!</h2>
@@ -29,7 +29,7 @@ const ProductCard = ({ product, setBook,handelWishList }) => {
 
                         <h4 className='ml-3 text-bold text-1xl'>{seller[0].name}</h4>
                         {
-                            seller[0].status===true?<h1 className='ml-3 btn btn-sm btn-primary'>verify</h1>:""
+                            seller[0].status===true ?<h1 className='ml-3 btn btn-sm btn-primary'>verify</h1>:""
                         }
                     </div>
                 </div>

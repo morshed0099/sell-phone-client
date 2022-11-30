@@ -12,9 +12,10 @@ const ProductDetalis = () => {
     const [book, setBook] = useState({})
     const bookProduct = (book[0])
     const { details, imgae_url, location, newPrice, oldprice, post_time, produnctName, seller} = product[0]
-    console.log(seller);
+    console.log(seller,'line 15');
     const date = (post_time[0].date)
     const time = (post_time[0].time)
+
     const buyerIfo={
         name:user.displayName,
         email:user.email
@@ -62,7 +63,7 @@ const ProductDetalis = () => {
                 <div className="card-body">
                     <h2 className="card-title">{produnctName}!</h2>
                     <p>{details}</p>
-                    <p className='font-bold text-indigo-400'><span>{time} - <ReactTimeAgo date={date} />  </span></p>
+                    <p className='font-bold text-indigo-400'><span><ReactTimeAgo date={date} /></span></p>
                     <div>
                         <h2 className='mb-3 text-2xl font-bold'>Seller</h2>
                         <div className='flex  items-center'>
