@@ -1,4 +1,4 @@
-import { isDisabled } from '@testing-library/user-event/dist/utils';
+
 import React from 'react';
 
 const UserTable = ({ users,handelUpdate,deleteUser }) => {

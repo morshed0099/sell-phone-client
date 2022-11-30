@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DetailsAddedProducts = ({ product }) => {
+const DetailsAddedProducts = ({ product,handelDelete,handelToFeauter}) => {
     console.log(product);
     return (
         <div className="card card-side bg-base-100 shadow-xl">
@@ -11,9 +11,8 @@ const DetailsAddedProducts = ({ product }) => {
                 </h2>
                 <p>{product.details}</p>
                 <div className="card-actions">
-                    <button className="btn btn-primary">Delete</button>
-                    <button className="btn btn-primary">UpDate</button>
-                    <button className="btn btn-primary">Sold</button>
+                    <button onClick={()=>handelDelete(product)} className="btn btn-primary">Delete</button>                    
+                    <button onClick={()=>handelToFeauter(product)} className="btn btn-primary">Add To Advertise</button>                    
                 </div>
             </div>
         </div>

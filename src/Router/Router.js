@@ -12,6 +12,8 @@ import MyAddedProduct from "../pages/MyAddedProduct/MyAddedProduct";
 import Allseller from "../pages/Alluser/Allseller";
 import AllBuyer from "../pages/Alluser/AllBuyer";
 import PrivateRout from "./PrivateRout";
+import MyOrder from "../pages/MyOrder/MyOrder";
+import MyWishList from "../pages/MyWishList/MyWishList";
 
 
 export const router=createBrowserRouter([
@@ -26,7 +28,8 @@ export const router=createBrowserRouter([
             {
                 path:'/login',
                 element:<Login></Login>
-            },
+            },            
+            
             {
                 path:'/signup',
                 element:<SingnUp></SingnUp>
@@ -36,7 +39,7 @@ export const router=createBrowserRouter([
                 loader:({params})=>{ 
                 return fetch(`http://localhost:5000/category/${params.id}`)
                },
-                element:<Categories></Categories>
+                element:<PrivateRout><Categories></Categories></PrivateRout>
             },
             
            {
@@ -44,14 +47,14 @@ export const router=createBrowserRouter([
             loader:({params})=>{
              return fetch(`http://localhost:5000/product/${params.id}`)
             },
-            element:<ProductDetails></ProductDetails>
+            element:<PrivateRout><ProductDetails></ProductDetails></PrivateRout>
            },
          
         ]
     },
     {
         path:'/dashboard',
-        element:<DashboradLayout></DashboradLayout>,
+        element:<PrivateRout><DashboradLayout></DashboradLayout></PrivateRout>,
         children:[
             {
                 path:'/dashboard',
@@ -59,7 +62,7 @@ export const router=createBrowserRouter([
             },
             {
                 path:'/dashboard/myproduct',
-                element:<MyAddedProduct></MyAddedProduct>
+                element:<PrivateRout><MyAddedProduct></MyAddedProduct></PrivateRout>
              },
              {
                 path:'/dashboard/allseller',
@@ -71,9 +74,16 @@ export const router=createBrowserRouter([
              },
              {
                 path:'/dashboard/addproduct',
-                element:<AddProduct></AddProduct>
+                element:<PrivateRout><AddProduct></AddProduct></PrivateRout>
             },
-               
+            {
+                path:'/dashboard/wishlist',
+                element:<MyWishList></MyWishList>
+            },               
+            {
+                path:'/dashboard/order',
+                element:<PrivateRout><MyOrder></MyOrder></PrivateRout>
+            },
         ]
     }
 

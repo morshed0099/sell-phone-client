@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import UserTable from '../../Shered/UserTble/UserTable';
-import Allseller from './Allseller';
+
 import {  useQuery } from 'react-query'
 import toast from 'react-hot-toast';
 

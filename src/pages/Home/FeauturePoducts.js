@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 import Addvertise from './Addvertise';
 
 
@@ -6,15 +7,19 @@ import Addvertise from './Addvertise';
 
 
 const FeauturePoducts = () => {
-    const [products, setProducts] = useState([])  
+    // const [products, setProducts] = useState([])  
+
+    const {data:products=[],refetch}=useQuery({
+        queryKey:['products'],
+        queryFn:async()=>{
+            const res= await fetch('http://localhost:5000/advertises')
+            const data=await res.json()
+            return data;
+        }
+    })
    
-    useEffect(() => {
-        fetch('http://localhost:5000/products')
-            .then(res => res.json())
-            .then(data => setProducts(data))
-    }, [])
-    
-   
+
+ 
 
     return (
         <div className=' mt-6 mb-3'>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Addvertise = ({ product}) => {
 
-    const { age, category_id, condition, details, imgae_url, location, newPrice, oldprice, post_time, produnctName, seller, _id } = product
+    const { imgae_url, newPrice, oldprice,  produnctName,  _id } = product
     return (
         <div className="card  bg-base-100 shadow-xl">
             <figure><img src={imgae_url} alt="Shoes" className='h-[200px] w-full' /></figure>

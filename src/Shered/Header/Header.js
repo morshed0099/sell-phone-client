@@ -1,28 +1,25 @@
+
+
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+
 import { Link } from 'react-router-dom';
 import { userAuth } from '../../AuthProvider/AuthProvider';
 
+
+
 const Header = () => {
-    const { user,logOut } = useContext(userAuth)
+    const { user,logOut,loader } = useContext(userAuth)
     const [catagories, setCategories] = useState([])
-    const[singUser,setSignUser]=useState('')
-    console.log(singUser.userRoll,'haaa');
-    useEffect(()=>{
-        fetch(`http://localhost:5000/users?email=${user?.email}`)
-        .then(res=>res.json())
-        .then(data=>setSignUser(data))
-    },[user])
-    
 
-    
-
+       
     useEffect(() => {
         fetch('http://localhost:5000/categories')
             .then(res => res.json())
             .then(data => setCategories(data))
     }, [])
-
+   
+    
     const handelLout=(event)=>{
           event.preventDefault()
           logOut()
@@ -30,24 +27,31 @@ const Header = () => {
             toast.success('logOut success')
           }).catch(error=>console.error(error))
     }
+
+    if(loader){
+        <h1>loading</h1>
+    }
     const menuItem =
         <>
-            <Link to='/'>Home</Link>
-            {
+            <Link to='/'>Home</Link>  
+               {
                 user?.email ?
                     <>
-                        <Link to='/dashboard'>Dashboard</Link>
-                                             
+                     
+                     <Link to='/dashboard'>Dashboard</Link>             
                         <button onClick={handelLout} className='btn btn-ghost'>logOut</button>
                     </>
                     :
-                    <>
+                     <>
+                       
                         <Link to='/login'>Login</Link>
                         <Link to='/signup'>signUp</Link>
+
                     </>
             }
          
         </>
+      
     return (
         <nav className='sticky top-0 z-50'>
             <div className="navbar bg-base-100">

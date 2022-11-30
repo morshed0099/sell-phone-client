@@ -28,18 +28,13 @@ const SingnUp = () => {
     console.log(seller,accaunts)
     return (
         <div>
-            <div className='flex justify-center items-center mb-8 mt-6'>                
-                <button onClick={handelSignUpSeller} className='btn btn-primary mr-3 p-2'>open accaunt for seller</button>
-                <button onClick={handelSignUpBuyer} className='btn btn-secondary p-2'>open accaunt for Buyer</button>
-            </div>
+            
 
-            { seller || buyer ?
-                <SingupFrom
-                accaunts={accaunts}
-                roll={roll}
-                >
-                </SingupFrom>:<></>
-            }
+          
+                <SingupFrom></SingupFrom>
+               
+              
+            
         </div>
     );
 };
