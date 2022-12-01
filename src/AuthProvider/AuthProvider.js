@@ -33,8 +33,8 @@ import { data } from 'autoprefixer';
       return signInWithPopup(auth,googleAuth)
     }
     useEffect(()=>{
-        const unsubscribe=onAuthStateChanged(auth,(currenUser)=>{
-            setUser(currenUser)
+        const unsubscribe=onAuthStateChanged(auth,(currentUser)=>{
+            setUser(currentUser);
             setLoader(false)
         })        
         return ()=>unsubscribe();

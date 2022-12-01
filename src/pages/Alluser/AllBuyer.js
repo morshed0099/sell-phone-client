@@ -4,9 +4,10 @@ import UserTable from '../../Shered/UserTble/UserTable';
 import {  useQuery } from 'react-query'
 import toast from 'react-hot-toast';
 
+
 const AllBuyer = () => {
-    // const [allusers, setAllusers] = useState([])
-     
+ ;
+      
        const {data:allusers=[],refetch}=useQuery({
         queryKey:["allusers"],        
         queryFn:async()=>{

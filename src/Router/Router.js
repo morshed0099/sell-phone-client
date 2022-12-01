@@ -14,6 +14,9 @@ import AllBuyer from "../pages/Alluser/AllBuyer";
 import PrivateRout from "./PrivateRout";
 import MyOrder from "../pages/MyOrder/MyOrder";
 import MyWishList from "../pages/MyWishList/MyWishList";
+import AdminRoute from "./AdminRoute";
+
+
 
 
 export const router=createBrowserRouter([
@@ -66,11 +69,11 @@ export const router=createBrowserRouter([
              },
              {
                 path:'/dashboard/allseller',
-                element:<Allseller></Allseller>
+                element:<AdminRoute><Allseller></Allseller></AdminRoute>
              },
              {
                 path:'/dashboard/allbuyer',
-                element:<AllBuyer></AllBuyer>
+                element:<AdminRoute><AllBuyer></AllBuyer></AdminRoute>
              },
              {
                 path:'/dashboard/addproduct',
