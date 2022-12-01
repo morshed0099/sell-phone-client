@@ -2,28 +2,27 @@ import React, { createContext, useEffect, useState } from 'react'
 import app from '../firebase/firebase.init';
 import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from 'firebase/auth'
 import { useQuery } from 'react-query';
+import { data } from 'autoprefixer';
 
 
  export const userAuth=createContext();
     const AuthProvider = ({children}) => {
     const [user,setUser]=useState('')
     const [singuser,setSignUser]=useState('')
-    const [loader,setLoader]=useState(true) 
+    const [loader,setLoader]=useState(true)
    
      useEffect(()=>{
-        fetch(`http://localhost:5000/users?email=${user?.email}`)
+        fetch()
         .then(res=>res.json())
         .then(data=>setSignUser(data))
      },[user?.email])
-     console.log(singuser,'line 18');
+    
       const auth=getAuth(app);
       const googleAuth=new GoogleAuthProvider()
-    const createUserEmail=(email,password)=>{
-        setLoader(true)
+    const createUserEmail=(email,password)=>{       
         return createUserWithEmailAndPassword(auth,email,password)
     }   
-    const updateUserInfo=(userUpdateData)=>{
-        setLoader(true)
+    const updateUserInfo=(userUpdateData)=>{       
         return updateProfile(auth.currentUser,userUpdateData)
     }
     const loginEmail=(email,password)=>{
@@ -53,6 +52,7 @@ import { useQuery } from 'react-query';
         loader,
         signWithGoogle,
         singuser,
+ 
      
     }
     return (

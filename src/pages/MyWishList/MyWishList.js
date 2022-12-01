@@ -7,7 +7,7 @@ import Wishlist from './Wishlist';
 const MyWishList = () => {
     const [book, setBook] = useState({})
     const { user } = useContext(userAuth)
-    const { data: wishList = [] } = useQuery({
+    const { data: wishList = [],refetch } = useQuery({
         queryKey: ['wishList', user?.email],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/wishlist?email=${user?.email}`)
@@ -47,6 +47,7 @@ const MyWishList = () => {
                     <BookModal
                         key={book._id}
                         bookProduct={book}
+                        refetch={refetch}
                     ></BookModal>}
             </div>
         </div>

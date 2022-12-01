@@ -21,16 +21,18 @@ const BookModal = ({ bookProduct }) => {
         setPhoneNumber(event.target.value);
 
     }
-    const bookingProduct = (book, buyer) => {
+    const bookingProduct = (book,booking_id,buyer) => {
         console.log(buyer);
-        const bookdata = {
+        const bookdata = { 
+            booking_id:booking_id,           
             book,
-            buyer
+            buyer,
+            buyer_email:user?.email,
 
         }
         console.log(bookdata);
         if (user?.email) {
-            fetch('http://localhost:5000/booking?id=${_id}&', {
+            fetch(`http://localhost:5000/booking`, {
                 method: "POST",
                 headers: { "content-type": "application/json" },
                 body: JSON.stringify(bookdata)
@@ -39,6 +41,8 @@ const BookModal = ({ bookProduct }) => {
                 .then(data => {
                     if (data.acknowledged) {
                         toast.success('booking sucssessfully')
+                    }else{
+                        toast.error(data.message)
                     }
                 })
         }
@@ -60,7 +64,7 @@ const BookModal = ({ bookProduct }) => {
                     <input type="text" readOnly defaultValue={bookProduct?.location} placeholder="Type here" className="input input-bordered w-full p-4 m-2" />
                     <input type="text" readOnly defaultValue={bookProduct?.newPrice} placeholder="Type here" className="input input-bordered w-full p-4 m-2" />
                     <input type="text" onBlur={setPhone} name='phoneNumber' placeholder="Type your phone number here" className="input input-bordered w-full p-4 m-2" />
-                    <label htmlFor="produnctModal" onClick={() => bookingProduct(bookProduct, buyer)} className='btn btn-primary w-full'>Confirm Booking</label>
+                    <label htmlFor="produnctModal" onClick={() => bookingProduct(bookProduct,bookProduct._id, buyer)} className='btn btn-primary w-full'>Confirm Booking</label>
                 </div>
             </div>
         </>

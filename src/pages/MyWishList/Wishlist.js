@@ -1,9 +1,25 @@
 import React from 'react';
-import ReactTimeAgo from 'react-time-ago';
+import toast from 'react-hot-toast';
 
 
-const Wishlist = ({ wish, setBook }) => {
+const Wishlist = ({ wish, setBook,refetch }) => {
     const {  imgae_url,  newPrice,  produnctName } = wish
+    const handelDelete=(id)=>{
+        console.log(id,'line 8');
+       const yes=window.confirm('are you sure delete ?');
+       if(yes){
+        fetch(`http://localhost:5000/wishlist/${id}`,{
+            method:'DELETE',
+            headers:{"content-type":"application/json"}
+        }).then(res=>res.json()).then(data=>{console.log(data)
+            if(data.deletedCount>0){
+                toast.success('delete successfully')
+            }
+            refetch();
+        })
+       }
+
+    }
 
     return (
         <>
@@ -16,7 +32,7 @@ const Wishlist = ({ wish, setBook }) => {
                 </div></td>
                 <td>{produnctName}</td>
                 <td>{newPrice}</td>
-                <td><label htmlFor="produnctModal" onClick={() => setBook(wish)} className="btn btn-primary btn-sm">Book Now</label> <button className='btn btn-success btn-sm'>Delete</button></td>
+                <td><label htmlFor="produnctModal" onClick={() => setBook(wish)} className="btn btn-primary btn-sm">Book Now</label> <button onClick={()=>handelDelete(wish._id)} className='btn btn-success btn-sm'>Delete</button></td>
             </tr>
         </>
     );

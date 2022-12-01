@@ -3,7 +3,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { userAuth } from '../../AuthProvider/AuthProvider';
 import ScrollToTop from '../scrollToTop';
 
@@ -36,19 +36,19 @@ const Header = () => {
         <>
         <ScrollToTop>
             
-        <Link to='/'>Home</Link>  
+        <NavLink to='/'>Home</NavLink>  
                {
                 user?.email ?
                     <>
                      
-                     <Link to='/dashboard'>Dashboard</Link>             
+                     <NavLink to='/dashboard'>Dashboard</NavLink>             
                         <button onClick={handelLout} className='btn btn-ghost'>logOut</button>
                     </>
                     :
                      <>
                        
-                        <Link to='/login'>Login</Link>
-                        <Link to='/signup'>signUp</Link>
+                        <NavLink to='/login'>Login</NavLink>
+                        <NavLink to='/signup'>signUp</NavLink>
 
                     </>
             }

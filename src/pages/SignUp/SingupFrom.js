@@ -44,10 +44,9 @@ const SingupFrom = () => {
                 createUserEmail(email, password)
                     .then(result => {
                         const user = result.user
-                        console.log(user)
+                        console.log(user,'line47')
                         updateUserInfo(userUpdateData)
                             .then(() => {
-
                                 createUser(userRoll, userName, photoURL, email, password)
                                 navigate(from, { replace: true })
                                 form.reset();
@@ -156,6 +155,7 @@ const SingupFrom = () => {
                             <div className="form-control mt-6">
                                 <button value='submit' className="btn btn-primary">{loader === true ? 'Loading....' : 'SingUp'}</button>
                             </div>
+                            <span>alredy have and accaunt ? <Link className='text-orange-600 text-1xl font-bold' to='/login'>Login</Link></span>
                         </div>
                     </form>
                     <div className="divider">OR</div>

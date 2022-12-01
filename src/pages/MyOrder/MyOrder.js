@@ -36,6 +36,7 @@ const MyOrder = () => {
                             bookings.map(book =><MyOrderTable
                             key={book._id}
                             book={book}
+                            refetch={refetch}
                             ></MyOrderTable>)
                         }
                     </tbody>

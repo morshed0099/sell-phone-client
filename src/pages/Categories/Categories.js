@@ -17,7 +17,8 @@ const Categories = () => {
     console.log(product);
      const wishlist={
        buyerIfo,
-      _id:product._id,
+       buyer_email:user?.email,
+       product_id:product._id,
       age:product.age,
       category_id:product.category_id,
       location:product.location,

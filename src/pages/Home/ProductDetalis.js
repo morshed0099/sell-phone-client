@@ -13,8 +13,7 @@ const ProductDetalis = () => {
     const bookProduct = (book[0])
     const { details, imgae_url, location, newPrice, oldprice, post_time, produnctName, seller} = product[0]
     console.log(seller,'line 15');
-    const date = (post_time[0].date)
-    const time = (post_time[0].time)
+    const date = (post_time[0].date)    
 
     const buyerIfo={
         name:user.displayName,
@@ -24,7 +23,8 @@ const ProductDetalis = () => {
     console.log(product,'line 23');
      const wishlist={
        buyerIfo,
-      _id:product[0]._id,
+       buyer_email:user?.email,
+       product_id:product[0]._id,
       age:product[0].age,
       category_id:product[0].category_id,
       location:product[0].location,

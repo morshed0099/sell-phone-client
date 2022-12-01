@@ -22,10 +22,12 @@ const ProductBookModal = ({book}) => {
         setPhoneNumber(event.target.value);
 
     }
-    const bookingProduct=(book,buyer)=>{     
+    const bookingProduct=(book,booking_id,buyer)=>{     
         const bookdata={
+            booking_id:booking_id,
             book,
-            buyer
+            buyer,
+            buyer_email:user?.email
            
         }
         console.log(bookdata);
@@ -39,6 +41,8 @@ const ProductBookModal = ({book}) => {
         .then(data=>{
              if(data.acknowledged){
                 toast.success('booking sucssessfully')
+             }else{
+                toast.error(data.message)
              }
             })        
        } 
@@ -60,7 +64,7 @@ const ProductBookModal = ({book}) => {
                     <input type="text" defaultValue={book.newPrice} readOnly placeholder="Type here" className="input input-bordered w-full p-4 m-2" />
                     <input type="text" defaultValue={book.location} readOnly placeholder="Type here" className="input input-bordered w-full p-4 m-2" />
                     <input type="text" onBlur={setPhone} name='number'  placeholder="Type here phone number" className="input input-bordered w-full p-4 m-2" />
-                    <label htmlFor="produnctModal" onClick={()=>bookingProduct(book,buyer)} className='btn btn-primary w-full'>Confirm Booking</label>
+                    <label htmlFor="produnctModal" onClick={()=>bookingProduct(book,book._id,buyer)} className='btn btn-primary w-full'>Confirm Booking</label>
                 </div>
             </div>
         </>

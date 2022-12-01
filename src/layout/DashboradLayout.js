@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import DashBoardHeader from '../Shered/DashBoardHeader';
+import { userAuth } from '../AuthProvider/AuthProvider';
 import Footer from '../Shered/Footer/Footer';
 import Header from '../Shered/Header/Header';
 
 const DashboradLayout = () => {
-
+   const {refetch}=useContext(userAuth);
+//    refetch()
     return (
         <div>
               <Header></Header>
