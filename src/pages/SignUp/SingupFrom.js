@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react';
+// import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import GoogleButton from 'react-google-button'
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -8,11 +9,13 @@ import { userAuth } from '../../AuthProvider/AuthProvider';
 const SingupFrom = () => {
     const [loader, setLoader] = useState(false)
     const [userRoll,setUerRoll]=useState('buyer')
-    const location = useLocation()
+    const location = useLocation()    
     const navigate = useNavigate()
     const from = location.state?.from?.pathname || "/"
+    const [userEmailForToken,setUserEmailForToken]=useState('')
     const { logOut, createUserEmail, updateUserInfo, signWithGoogle } = useContext(userAuth)
 
+      console.log(userEmailForToken,'line 18');
     const handelCatchValue=(event)=>{
        const  roll=event.target.value;
        setUerRoll(roll);
@@ -86,16 +89,17 @@ const SingupFrom = () => {
             status: false,
         }
         const user = userInfo
-        console.log(user)
+        console.log(user)      
         fetch('http://localhost:5000/users', {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(user),
         }).then(res => res.json())
-            .then(data => {
-                console.log(data.message);
-                if (data.acknowledged) {
-                    toast.success('user create sucessfully')
+            .then(data => { 
+                if (data.acknowledged) {                  
+                    toast.success('user create sucessfully') 
+                    setUserEmailForToken(user?.email) ; 
+                    getUsertoken(user?.email)                
                     setLoader(false)
                 } else {
                     logOut()
@@ -103,6 +107,16 @@ const SingupFrom = () => {
                     toast.error('email alredy used please login')
                 }
             })
+    }
+    const getUsertoken=email=>{
+        fetch(`http://localhost:5000/jwt?email=${email}`)
+        .then(res=>res.json())
+        .then(data=>{
+         if(data.token){
+             localStorage.setItem("token",data.token)
+             navigate('/')
+         }
+        })
     }
     return (
         <div className="hero ">

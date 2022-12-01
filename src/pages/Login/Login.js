@@ -6,9 +6,9 @@ import { userAuth } from '../../AuthProvider/AuthProvider';
 
 const Login = () => {
     const {loginEmail,signWithGoogle}=useContext(userAuth)
-    const location=useLocation()
-    const from =location.state?.form?.pathname || "/"
-    const navigate=useNavigate()
+    let navigate = useNavigate();
+    let location = useLocation();
+    const from = location.state?.from?.pathname || "/";   
     const haldelLogin=(event)=>{
         event.preventDefault()
         const form=event.target
@@ -18,8 +18,9 @@ const Login = () => {
         .then(result=>{
             const user =result.user
             console.log(user)
-            toast.success('user login succesfully')
-            navigate(from,{replace:true})
+            getUsertoken(user?.email)  
+
+            toast.success('user login succesfully')            
         }).catch(error=>{
             console.error(error)
             toast.error(error.message);
@@ -32,9 +33,10 @@ const Login = () => {
         .then(result=>{
             const user=result.user  
             const userRoll="seller"
-            createUser(userRoll,user.userName,user.photoURL,user.email,user.password) 
+            createUser(userRoll,user?.userName,user?.photoURL,user?.email,user?.password) 
+            getUsertoken(user?.email)
             toast.success('login succesfully')          
-            navigate(from,{replace:true})      
+                
          }).catch(error=>{        
             console.error(error)
             toast.error(error.message)
@@ -67,7 +69,17 @@ const Login = () => {
                 }
              })    
     } 
-
+    const getUsertoken=email=>{
+        fetch(`http://localhost:5000/jwt?email=${email}`)
+        .then(res=>res.json())
+        .then(data=>{
+         if(data.token){
+             localStorage.setItem("token",data.token);
+             navigate(from, { replace: true }); 
+           
+         }
+        })
+    }
     return (
         <div className="hero min-h-screen">
             <div className="hero-content flex-col lg:flex-row-reverse">
@@ -96,7 +108,7 @@ const Login = () => {
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Login</button>
                             </div>
-                            <span>are you new ? go to <Link className='text-1xl font-bold text-orange-600' to="/signup">SignUp</Link></span>
+                            <span>are you new ? go to <Link className='text-1xl font-bold text-orange-600' to="/singup">SignUp</Link></span>
                         </div>
                     </form>
                     <div className="divider">OR</div>

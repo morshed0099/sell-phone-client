@@ -10,11 +10,11 @@ const MyAddedProduct = () => {
     const {user}=useContext(userAuth)
     console.log(user,'line 10');
 
-
+   const url=`http://localhost:5000/addedproducts?email=${user?.email}`
     const {data:products=[],refetch}=useQuery({
         queryKey:['products',user?.email],
         queryFn:async()=>{
-            const res=await fetch(`http://localhost:5000/addedproducts?email=${user?.email}`);
+            const res=await fetch(url);
             const data=await res.json()
             return data
         }

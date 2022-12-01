@@ -63,7 +63,9 @@ const AddProduct = () => {
 const addProduct =(product,form)=>{
     fetch('http://localhost:5000/products',{
         method:"POST",
-        headers:{"content-type":"application/json"},
+        headers:{
+           "content-type":"application/json"
+        },
         body:JSON.stringify(product)
     }).then(res=>res.json())
     .then(data=>{
@@ -76,7 +78,7 @@ const addProduct =(product,form)=>{
 }
 
     return (
-        <div className="hero p-9 ">
+        <div className="hero p-9">
             <div className="">               
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <form onSubmit={handelProduct}>

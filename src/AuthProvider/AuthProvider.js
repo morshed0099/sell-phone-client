@@ -11,11 +11,7 @@ import { data } from 'autoprefixer';
     const [singuser,setSignUser]=useState('')
     const [loader,setLoader]=useState(true)
    
-     useEffect(()=>{
-        fetch()
-        .then(res=>res.json())
-        .then(data=>setSignUser(data))
-     },[user?.email])
+
     
       const auth=getAuth(app);
       const googleAuth=new GoogleAuthProvider()
@@ -40,9 +36,14 @@ import { data } from 'autoprefixer';
         const unsubscribe=onAuthStateChanged(auth,(currenUser)=>{
             setUser(currenUser)
             setLoader(false)
-        })
+        })        
         return ()=>unsubscribe();
     },[])
+    useEffect(()=>{
+        fetch(`http://localhost:5000/users?email=${user?.email}`)
+        .then(res=>res.json())
+        .then(data=>setSignUser(data))
+     },[user?.email])
     const authInfo={
         createUserEmail,
         updateUserInfo,
