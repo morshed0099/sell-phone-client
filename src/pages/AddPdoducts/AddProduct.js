@@ -8,7 +8,7 @@ const AddProduct = () => {
     const [categories,setCategories]=useState([])
     const[selectOption,setSelctOption]=useState('')
     const [loader,setLoader]=useState(false)
-    console.log(singuser[0].status,'line 11');
+    console.log(singuser[0]?.status,'line 11');
  
     const date=new Date()
     const time=moment().format("MMM Do YY")
@@ -47,7 +47,7 @@ const AddProduct = () => {
            const product={
             produnctName,
             imgae_url,
-           seller:[{"name":user.displayName,"email":user.email,"image":user.photoURL,status:singuser[0].status}],
+           seller:[{"name":user.displayName,"email":user.email,"image":user.photoURL,status:singuser[0]?.status}],
             category_id:selectOption,
             oldprice,
             newPrice,

@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 
 import { Link } from 'react-router-dom';
 import { userAuth } from '../../AuthProvider/AuthProvider';
+import ScrollToTop from '../scrollToTop';
 
 
 
@@ -33,7 +34,9 @@ const Header = () => {
     }
     const menuItem =
         <>
-            <Link to='/'>Home</Link>  
+        <ScrollToTop>
+            
+        <Link to='/'>Home</Link>  
                {
                 user?.email ?
                     <>
@@ -49,6 +52,7 @@ const Header = () => {
 
                     </>
             }
+        </ScrollToTop>
          
         </>
       

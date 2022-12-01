@@ -18,14 +18,29 @@ const MyWishList = () => {
     console.log(wishList);
     return (
         <div>
-            <div className='w-[90%] mx-auto grid grid-cols-1 gap-4  md:grid-cols-2 lg:grid-cols-3'>
-                {
-                    wishList.map(wish => <Wishlist
-                        key={wish._id}
-                        wish={wish}
-                        setBook={setBook}
-                    ></Wishlist>)
-                }
+            <div>
+                <div className="overflow-x-auto">
+                    <table className="table w-full">
+
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Name</th>
+                                <th>Job</th>
+                                <th>Favorite Color</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                wishList.map(wish => <Wishlist
+                                    key={wish._id}
+                                    wish={wish}
+                                    setBook={setBook}
+                                ></Wishlist>)
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div>
                 {book &&
