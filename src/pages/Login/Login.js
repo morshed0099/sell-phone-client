@@ -108,7 +108,7 @@ const Login = () => {
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Login</button>
                             </div>
-                            <span>are you new ? go to <Link className='text-1xl font-bold text-orange-600' to="/singup">SignUp</Link></span>
+                            <span>are you new ? go to <Link className='text-1xl font-bold text-orange-600' to="/signup">SignUp</Link></span>
                         </div>
                     </form>
                     <div className="divider">OR</div>
