@@ -2,6 +2,7 @@ import React from 'react';
 import Carosel from '../../../Shered/Carosel/Carosel';
 import Allcategory from '../Allcategory';
 import FeauturePoducts from '../FeauturePoducts';
+import Caution from './Caution';
 
 const Home = () => {
     return (
@@ -10,6 +11,7 @@ const Home = () => {
             <Carosel></Carosel>
             <Allcategory></Allcategory>
             <FeauturePoducts></FeauturePoducts>
+            <Caution></Caution>
         </div>
     );
 };
