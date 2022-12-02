@@ -15,6 +15,11 @@ import PrivateRout from "./PrivateRout";
 import MyOrder from "../pages/MyOrder/MyOrder";
 import MyWishList from "../pages/MyWishList/MyWishList";
 import AdminRoute from "./AdminRoute";
+import Payment from "../pages/MyOrder/Payment";
+import DisplayError from "../Shered/DisplayError/DisplayError";
+import SellerRoute from "./SellerRoute";
+import BuyerRoute from "./BuyerRoute";
+import Blog from "../pages/Blog/Blog";
 
 
 
@@ -23,6 +28,7 @@ export const router=createBrowserRouter([
     {
         path:'/',
         element:<Main></Main>,
+        errorElement:<DisplayError></DisplayError>,
         children:[
             {
                 path:'/',
@@ -31,6 +37,10 @@ export const router=createBrowserRouter([
             {
                 path:'/login',
                 element:<Login></Login>
+            },            
+            {
+                path:'/blog',
+                element:<Blog></Blog>
             },            
             
             {
@@ -58,6 +68,7 @@ export const router=createBrowserRouter([
     {
         path:'/dashboard',
         element:<PrivateRout><DashboradLayout></DashboradLayout></PrivateRout>,
+        errorElement:<DisplayError></DisplayError>,
         children:[
             {
                 path:'/dashboard',
@@ -65,7 +76,7 @@ export const router=createBrowserRouter([
             },
             {
                 path:'/dashboard/myproduct',
-                element:<PrivateRout><MyAddedProduct></MyAddedProduct></PrivateRout>
+                element:<SellerRoute><MyAddedProduct></MyAddedProduct></SellerRoute> 
              },
              {
                 path:'/dashboard/allseller',
@@ -77,15 +88,23 @@ export const router=createBrowserRouter([
              },
              {
                 path:'/dashboard/addproduct',
-                element:<PrivateRout><AddProduct></AddProduct></PrivateRout>
+                element:<SellerRoute><AddProduct></AddProduct></SellerRoute> 
             },
             {
                 path:'/dashboard/wishlist',
-                element:<MyWishList></MyWishList>
+                element:<BuyerRoute><MyWishList></MyWishList></BuyerRoute>
             },               
             {
                 path:'/dashboard/order',
-                element:<PrivateRout><MyOrder></MyOrder></PrivateRout>
+                element:<BuyerRoute><MyOrder></MyOrder></BuyerRoute>
+            },
+            {
+                path:'/dashboard/payment/:id', 
+                loader:({params})=>{
+                    return fetch(`http://localhost:5000/booking/${params.id}`)
+                } ,            
+                element:<PrivateRout><Payment></Payment></PrivateRout>,
+                
             },
         ]
     }

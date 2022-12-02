@@ -1,8 +1,11 @@
 import React from 'react';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 const MyOrderTable = ({ book,refetch }) => {
-    const { imgae_url, produnctName, newPrice } = book.book;
+    const {_id,paid}=book
+    const { imgae_url, produnctName, newPrice, } = book.book;
+    console.log(book ," 7");
      const handelDelete=(id)=>{
        const yes= window.confirm('are you sure delete ?')
        if(yes){
@@ -28,7 +31,14 @@ const MyOrderTable = ({ book,refetch }) => {
                 </div></td>
                 <td>{produnctName}</td>
                 <td>{newPrice}</td>
-                <td><button onClick={()=>handelDelete(book._id)} className='btn btn-sm btn-success'>Delete</button> <button className='btn btn-sm btn-primary ml-3'>Pay</button></td>
+                <td><button onClick={()=>handelDelete(book._id)} className='btn btn-sm btn-success'>Delete</button> 
+                {
+                    newPrice && !paid &&  <Link to={`/dashboard/payment/${_id}`}><button className='btn btn-sm btn-primary ml-3'>Pay</button></Link>
+                }
+                {
+                    newPrice && paid && <button className='btn btn-sm btn-primary ml-3'>paid</button>
+                }
+                </td>
             </tr>
         </>
     );

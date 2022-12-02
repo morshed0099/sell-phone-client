@@ -37,6 +37,7 @@ const Header = () => {
         <ScrollToTop>
             
         <NavLink to='/'>Home</NavLink>  
+        <NavLink to='/blog'>Blog</NavLink>  
                {
                 user?.email ?
                     <>
