@@ -90,7 +90,7 @@ const SingupFrom = () => {
         }
         const user = userInfo
         console.log(user)      
-        fetch('http://localhost:5000/users', {
+        fetch('https://sell-phones-server-morshed0099.vercel.app/users', {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(user),
@@ -109,7 +109,7 @@ const SingupFrom = () => {
             })
     }
     const getUsertoken=email=>{
-        fetch(`http://localhost:5000/jwt?email=${email}`)
+        fetch(`https://sell-phones-server-morshed0099.vercel.app/jwt?email=${email}`)
         .then(res=>res.json())
         .then(data=>{
          if(data.token){

@@ -12,7 +12,7 @@ const FeauturePoducts = () => {
     const {data:products=[],refetch}=useQuery({
         queryKey:['products'],
         queryFn:async()=>{
-            const res= await fetch('http://localhost:5000/advertises')
+            const res= await fetch('https://sell-phones-server-morshed0099.vercel.app/advertises')
             const data=await res.json()
             return data;
         }

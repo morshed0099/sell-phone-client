@@ -9,7 +9,7 @@ const DashBoardHeader = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/categories')
+        fetch('https://sell-phones-server-morshed0099.vercel.app/categories')
             .then(res => res.json())
             .then(data => setCategories(data))
     }, [])

@@ -23,9 +23,7 @@ const AdminRoute = ({ children }) => {
        {
         toast.success('to access admin route login admin email ')        
        }
-       {
-        logOut()
-       }
+       
     </>)
 };
 

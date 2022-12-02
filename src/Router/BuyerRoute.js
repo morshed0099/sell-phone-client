@@ -20,9 +20,7 @@ const BuyerRoute = ({ children }) => {
        {
         toast.success('to access isSeller route login isSeller email ')        
        }
-       {
-        logOut()
-       }
+       
     </>)
 };
 

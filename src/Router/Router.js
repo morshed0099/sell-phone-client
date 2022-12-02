@@ -50,7 +50,7 @@ export const router=createBrowserRouter([
             {
                 path:'/category/:id',
                 loader:({params})=>{ 
-                return fetch(`http://localhost:5000/category/${params.id}`)
+                return fetch(`https://sell-phones-server-morshed0099.vercel.app/category/${params.id}`)
                },
                 element:<PrivateRout><Categories></Categories></PrivateRout>
             },
@@ -58,7 +58,7 @@ export const router=createBrowserRouter([
            {
             path:'/product/:id',
             loader:({params})=>{
-             return fetch(`http://localhost:5000/product/${params.id}`)
+             return fetch(`https://sell-phones-server-morshed0099.vercel.app/product/${params.id}`)
             },
             element:<PrivateRout><ProductDetails></ProductDetails></PrivateRout>
            },
@@ -101,7 +101,7 @@ export const router=createBrowserRouter([
             {
                 path:'/dashboard/payment/:id', 
                 loader:({params})=>{
-                    return fetch(`http://localhost:5000/booking/${params.id}`)
+                    return fetch(`https://sell-phones-server-morshed0099.vercel.app/booking/${params.id}`)
                 } ,            
                 element:<PrivateRout><Payment></Payment></PrivateRout>,
                 

@@ -8,7 +8,7 @@ const Wishlist = ({ wish, setBook,refetch }) => {
         console.log(id,'line 8');
        const yes=window.confirm('are you sure delete ?');
        if(yes){
-        fetch(`http://localhost:5000/wishlist/${id}`,{
+        fetch(`https://sell-phones-server-morshed0099.vercel.app/wishlist/${id}`,{
             method:'DELETE',
             headers:{"content-type":"application/json"}
         }).then(res=>res.json()).then(data=>{console.log(data)

@@ -37,7 +37,7 @@ const ProductDetalis = () => {
       seller:product[0].seller,
       condition:product[0].condition
 }
-      fetch('http://localhost:5000/wishlists',{
+      fetch('https://sell-phones-server-morshed0099.vercel.app/wishlists',{
         method:"POST",
         headers:{"content-type":"application/json"},
         body:JSON.stringify(wishlist)

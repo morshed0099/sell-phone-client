@@ -10,7 +10,7 @@ const MyAddedProduct = () => {
     const {user}=useContext(userAuth)
     console.log(user,'line 10');
 
-   const url=`http://localhost:5000/addedproducts?email=${user?.email}`
+   const url=`https://sell-phones-server-morshed0099.vercel.app/addedproducts?email=${user?.email}`
     const {data:products=[],refetch}=useQuery({
         queryKey:['products',user?.email],
         queryFn:async()=>{
@@ -21,7 +21,7 @@ const MyAddedProduct = () => {
         
     })
     // useEffect(() => {
-    //     fetch(`http://localhost:5000/products?email=${user?.email}`)
+    //     fetch(`https://sell-phones-server-morshed0099.vercel.app/products?email=${user?.email}`)
     //     .then(res=>res.json())
     //     .then(data=>setProduct(data))
     // }, [user?.email])
@@ -30,7 +30,7 @@ const MyAddedProduct = () => {
        const {_id}=product
        const yes=window.confirm('are you sure delete !!')
        if (yes){
-        fetch(`http://localhost:5000/products/${_id}`,{
+        fetch(`https://sell-phones-server-morshed0099.vercel.app/products/${_id}`,{
             method:"DELETE",
             headers:{"content-type":"application/json"}
         })
@@ -45,7 +45,7 @@ const MyAddedProduct = () => {
     }
     }
     const handelToFeauter=(product)=>{
-        fetch('http://localhost:5000/advertise',{
+        fetch('https://sell-phones-server-morshed0099.vercel.app/advertise',{
             method:"POST",
             headers:{"content-type":"application/json"},            
             body:JSON.stringify(product)

@@ -32,7 +32,7 @@ const BookModal = ({ bookProduct }) => {
         }
         console.log(bookdata);
         if (user?.email) {
-            fetch(`http://localhost:5000/booking`, {
+            fetch(`https://sell-phones-server-morshed0099.vercel.app/booking`, {
                 method: "POST",
                 headers: { "content-type": "application/json" },
                 body: JSON.stringify(bookdata)

@@ -11,7 +11,7 @@ const AllBuyer = () => {
        const {data:allusers=[],refetch}=useQuery({
         queryKey:["allusers"],        
         queryFn:async()=>{
-            const res=await fetch('http://localhost:5000/users/buyer')
+            const res=await fetch('https://sell-phones-server-morshed0099.vercel.app/users/buyer')
            const data=await res.json()
             return data
         }
@@ -23,7 +23,7 @@ const AllBuyer = () => {
        const deleteUser=(users)=>{
         const yes= window.confirm('are you sure detele user ?')
         if (yes){
-            fetch(`http://localhost:5000/users/buyer/${users?._id}`,{
+            fetch(`https://sell-phones-server-morshed0099.vercel.app/users/buyer/${users?._id}`,{
                 method:"DELETE",
                 headers:{"content-type":"application/json"}
             })
@@ -40,7 +40,7 @@ const AllBuyer = () => {
 
       const handelUpdate=(users)=>{
         const status={status:true}
-       fetch(`http://localhost:5000/users/buyer/${users?._id}`,{
+       fetch(`https://sell-phones-server-morshed0099.vercel.app/users/buyer/${users?._id}`,{
         method:"PUT",
         headers:{"content-type":"application/json"},
         body:JSON.stringify(status),

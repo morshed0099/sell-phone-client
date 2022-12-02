@@ -9,7 +9,7 @@ const MyOrderTable = ({ book,refetch }) => {
      const handelDelete=(id)=>{
        const yes= window.confirm('are you sure delete ?')
        if(yes){
-        fetch(`http://localhost:5000/bookings/${id}`,{
+        fetch(`https://sell-phones-server-morshed0099.vercel.app/bookings/${id}`,{
             method:"DELETE",
             headers:{"content-type":"application/json"}
         }).then(res=>res.json()).then(data=>{
