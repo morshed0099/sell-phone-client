@@ -11,8 +11,8 @@ const DetailsAddedProducts = ({ product,handelDelete,handelToFeauter}) => {
                 </h2>
                 <p>{product.details}</p>
                 <div className="card-actions">
-                    <button onClick={()=>handelDelete(product)} className="btn btn-primary">Delete</button>                    
-                    <button onClick={()=>handelToFeauter(product)} className="btn btn-primary">Add To Advertise</button>                    
+                    <button onClick={()=>handelDelete(product)} className="btn btn-sm btn-primary">Delete</button>                    
+                    <button onClick={()=>handelToFeauter(product)} className="btn btn-sm btn-primary">Add To Advertise</button>                    
                 </div>
             </div>
         </div>
