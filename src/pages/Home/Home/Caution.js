@@ -6,7 +6,7 @@ const Caution = () => {
          <div className="stats w-full m-10 mx-auto justify-center shadow">
             <div className="hero ">
                 <div className="hero-content flex-col lg:flex-row-reverse">
-                    <div className="text-center lg:text-left">
+                    <div className="text-center ml-7 lg:text-left">
                         <h1 className="text-5xl font-bold">Give your feadback!</h1>
                         <p className="py-6">send your openion for our developmet and stay conencted </p>
                     </div>
