@@ -17,7 +17,7 @@ const MyWishList = () => {
     })
     console.log(wishList);
     return (
-        <div>
+        <div className='mr-4 ml-4'>
             <div>
                 <div className="overflow-x-auto">
                     <table className="table w-full">

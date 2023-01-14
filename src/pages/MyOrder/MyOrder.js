@@ -18,7 +18,7 @@ const MyOrder = () => {
     })
     console.log(bookings);
     return (
-        <div>
+        <div className='mr-4 ml-4'>
             <div className="overflow-x-auto">
                 <table className="table w-full">
 

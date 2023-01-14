@@ -61,8 +61,8 @@ const MyAddedProduct = () => {
         })
     }
     return (
-        <div className=''>
-            <h1>Your ALL Product</h1>
+        <div className='mr-4 ml-4'>
+            <h1 className='text-center text-2xl font-bold mt-2 mb-2'>Your ALL Product</h1>
           <div className='m-6 p-4 gap-4 mx-auto grid grid-cols-1  md:grid-cols-2'>
           {
                 products.map(product=><DetailsAddedProducts

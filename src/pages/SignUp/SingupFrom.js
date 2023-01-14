@@ -118,7 +118,7 @@ const SingupFrom = () => {
             })
     }
     return (
-        <div className="w-[85%] mx-auto p-6 shadow-2xl bg-base-200 rounded-2xl mt-4 mb-4">
+        <div className="w-[85%] border border-grey-dark mx-auto p-4 md:p-10  shadow-2xl bg-base-200 rounded-2xl mt-4 mb-4">
             <form onSubmit={handelSignup}>
                 <h1 className='text-center text-3xl font-bold mb-2'>SignUp</h1>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4'>
