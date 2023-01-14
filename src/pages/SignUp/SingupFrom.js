@@ -8,17 +8,17 @@ import { userAuth } from '../../AuthProvider/AuthProvider';
 
 const SingupFrom = () => {
     const [loader, setLoader] = useState(false)
-    const [userRoll,setUerRoll]=useState('buyer')
-    const location = useLocation()    
+    const [userRoll, setUerRoll] = useState('buyer')
+    const location = useLocation()
     const navigate = useNavigate()
     const from = location.state?.from?.pathname || "/"
-    const [userEmailForToken,setUserEmailForToken]=useState('')
+    const [userEmailForToken, setUserEmailForToken] = useState('')
     const { logOut, createUserEmail, updateUserInfo, signWithGoogle } = useContext(userAuth)
 
-      console.log(userEmailForToken,'line 18');
-    const handelCatchValue=(event)=>{
-       const  roll=event.target.value;
-       setUerRoll(roll);
+    console.log(userEmailForToken, 'line 18');
+    const handelCatchValue = (event) => {
+        const roll = event.target.value;
+        setUerRoll(roll);
     }
     const handelSignup = (event) => {
         setLoader(true)
@@ -47,7 +47,6 @@ const SingupFrom = () => {
                 createUserEmail(email, password)
                     .then(result => {
                         const user = result.user
-                        console.log(user,'line47')
                         updateUserInfo(userUpdateData)
                             .then(() => {
                                 createUser(userRoll, userName, photoURL, email, password)
@@ -89,17 +88,17 @@ const SingupFrom = () => {
             status: false,
         }
         const user = userInfo
-        console.log(user)      
+        console.log(user)
         fetch('https://sell-phones-server-morshed0099.vercel.app/users', {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(user),
         }).then(res => res.json())
-            .then(data => { 
-                if (data.acknowledged) {                  
-                    toast.success('user create sucessfully') 
-                    setUserEmailForToken(user?.email) ; 
-                    getUsertoken(user?.email)                
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success('user create sucessfully')
+                    setUserEmailForToken(user?.email);
+                    getUsertoken(user?.email)
                     setLoader(false)
                 } else {
                     logOut()
@@ -108,75 +107,73 @@ const SingupFrom = () => {
                 }
             })
     }
-    const getUsertoken=email=>{
+    const getUsertoken = email => {
         fetch(`https://sell-phones-server-morshed0099.vercel.app/jwt?email=${email}`)
-        .then(res=>res.json())
-        .then(data=>{
-         if(data.token){
-             localStorage.setItem("token",data.token)
-             navigate('/')
-         }
-        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.token) {
+                    localStorage.setItem("token", data.token)
+                    navigate('/')
+                }
+            })
     }
     return (
-        <div className="hero">
-            <div className="hero-content flex-col lg:flex-row-reverse">
-                <div className="text-center lg:text-left">
-                    <h1  className="text-5xl mt-[-200px] sticky top-[100px]  font-bold">Signup now!</h1>
-                  
-                </div>
-                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                    <form onSubmit={handelSignup}>
-                        <div className="card-body">
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Name</span>
-                                </label>
-                                <input name="name" type="text" placeholder="Name" className="input input-bordered" />
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Photo</span>
-                                </label>
-                                <input name="photoURL" type="file" placeholder="your photo" required className="input input-bordered" />
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Email</span>
-                                </label>
-                                <input name='email' type="email" placeholder="email" className="input input-bordered" />
-                            </div>
-                            <div className="form-control">
+        <div className="w-[85%] mx-auto p-6 shadow-2xl bg-base-200 rounded-2xl mt-4 mb-4">
+            <form onSubmit={handelSignup}>
+                <h1 className='text-center text-3xl font-bold mb-2'>SignUp</h1>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4'>
+                    <div>
+                        <div className="form-control">
                             <label className="label">
-                                    <span className="label-text">are you seller or buyer set </span>
-                                </label>
+                                <span className="label-text">Name</span>
+                            </label>
+                            <input name="name" type="text" placeholder="Name" className="input input-bordered" />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Photo</span>
+                            </label>
+                            <input name="photoURL" type="file" placeholder="your photo" required className="input input-bordered" />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Email</span>
+                            </label>
+                            <input name='email' type="email" placeholder="email" className="input input-bordered" />
+                        </div>
+                       
+                    </div>
+                    <div>
+                    <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">are you seller or buyer set </span>
+                            </label>
                             <select onBlur={handelCatchValue} className="select select-bordered w-full ">
                                 <option disabled selected>Are You Buyer or seller Select ?</option>
                                 <option value="seller">seller</option>
                                 <option value="buyer">buyer</option>
                             </select>
-                            </div>
-                            
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Password</span>
-                                </label>
-                                <input name='password' type="password" placeholder="password" className="input input-bordered" />
-                                <label className="label">
-                                    <Link to='/reset' className="label-text-alt link link-hover">Forgot password?</Link>
-                                </label>
-                            </div>
-                            <div className="form-control mt-6">
-                                <button value='submit' className="btn btn-primary">{loader === true ? 'Loading....' : 'SingUp'}</button>
-                            </div>
-                            <span>alredy have and accaunt ? <Link className='text-orange-600 text-1xl font-bold' to='/login'>Login</Link></span>
                         </div>
-                    </form>
-                    <div className="divider">OR</div>
-                    <GoogleButton onClick={googleSingUp} className='mx-auto  mb-3 rounded-full'></GoogleButton>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Password</span>
+                            </label>
+                            <input name='password' type="password" placeholder="password" className="input input-bordered" />
+                           
+                        </div>
+                        <div className="form-control mt-6 md:mt-[37px]">
+                            <button value='submit' className="btn btn-primary">{loader === true ? 'Loading....' : 'SingUp'}</button>
+                        </div>
+                       
+                    </div>
                 </div>
-            </div>
-        </div>
+            </form>
+            <div className="divider">OR</div>
+            <span>alredy have and accaunt ? <Link className='text-orange-600 text-1xl font-bold' to='/login'>Login</Link></span>
+            <GoogleButton onClick={googleSingUp} className='mx-auto  mb-3 rounded-full'></GoogleButton>
+
+
+        </div >
     );
 };
 

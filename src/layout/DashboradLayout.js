@@ -4,57 +4,64 @@ import { userAuth } from '../AuthProvider/AuthProvider';
 import useAdmin from '../hooks/useAdmin';
 import useBuyer from '../hooks/useBuyer';
 import useSeller from '../hooks/useSeller';
+import DashBoardHeader from '../Shered/DashBoardHeader';
 import Footer from '../Shered/Footer/Footer';
 import Header from '../Shered/Header/Header';
 
 const DashboradLayout = () => {
-    const { user } = useContext(userAuth);
+    const { user, loader } = useContext(userAuth);
     const [isAdmin] = useAdmin(user?.email)
     const [isSeller] = useSeller(user?.email)
     const [isBuyer] = useBuyer(user?.email)
 
 
+
+
     return (
         <div>
-            <Header></Header>
+
             <div className="drawer drawer-mobile">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content ">
+                <div className="drawer-content flex flex-col">
+                    <DashBoardHeader></DashBoardHeader>
                     <Outlet></Outlet>
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 bg-base-100 text-base-content">
+                    <ul className="menu  p-4 w-[200px] pt-12 bg-indigo-800 text-white">
+                    <label htmlFor="my-drawer-2" className="lg:hidden flex justify-end cursor-pointer hover:text-red-400 transform translate-x-1 duration-400 ease-linear">X</label>
                         {
-                            isBuyer && <>
-                                <li><Link to='/dashboard/wishlist'>MyWishList</Link></li>
-                                <li><Link to='/dashboard/order'>MyOrder</Link></li>
+                            loader ? <><h1 className='text-2xl font-semibold text-center mt-24 text-orange-800'>loading...</h1></> : <>
+
+                                {
+                                    isBuyer && <>
+                                        <li><Link to='/dashboard/wishlist'>MyWishList</Link></li>
+                                        <li><Link to='/dashboard/order'>MyOrder</Link></li>
+                                    </>
+                                }
+
+                                {
+                                    isAdmin &&
+                                    <>
+                                        <li><Link to='/dashboard/allseller'>All Seller</Link></li>
+                                        <li><Link to='/dashboard/allbuyer'>All Buyer</Link></li>
+                                    </>
+                                }
+
+                                {
+                                    isSeller &&
+                                    <>
+                                        <li><Link to='/dashboard/myproduct'>MyAddedProduct</Link></li>
+                                        <li><Link to='/dashboard/addproduct'>AddProduct</Link></li>
+                                    </>
+                                }
                             </>
                         }
 
-                        {
-                            isAdmin &&
-                            <>
-                                <li><Link to='/dashboard/allseller'>All Seller</Link></li>
-                                <li><Link to='/dashboard/allbuyer'>All Buyer</Link></li>
-                            </>
-                        }
-
-                        {
-                            isSeller &&
-                            <>
-                                <li><Link to='/dashboard/myproduct'>MyAddedProduct</Link></li>
-                                <li><Link to='/dashboard/addproduct'>AddProduct</Link></li>
-                            </>
-                        }
                     </ul>
 
                 </div>
-            </div>
-
-
-
-            <Footer></Footer>
+            </div>            
         </div>
     );
 };

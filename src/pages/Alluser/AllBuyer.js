@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 
 
 const AllBuyer = () => {
- ;
+ 
       
        const {data:allusers=[],refetch}=useQuery({
         queryKey:["allusers"],        

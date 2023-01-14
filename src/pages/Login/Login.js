@@ -32,10 +32,11 @@ const Login = () => {
         signWithGoogle()
         .then(result=>{
             const user=result.user  
-            const userRoll="seller"
+            const userRoll="buyer"
             createUser(userRoll,user?.userName,user?.photoURL,user?.email,user?.password) 
             getUsertoken(user?.email)
-            toast.success('login succesfully')          
+            toast.success('login succesfully') 
+                     
                 
          }).catch(error=>{        
             console.error(error)
