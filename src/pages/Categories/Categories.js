@@ -10,8 +10,8 @@ const Categories = () => {
     const {user}=useContext(userAuth)
    const [book,setBook]=useState([])
      const buyerIfo={
-        name:user.displayName,
-        email:user.email
+        name:user?.displayName,
+        email:user?.email
      }
    const handelWishList=(product,event)=>{
     console.log(product);
