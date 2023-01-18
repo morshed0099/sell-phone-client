@@ -85,24 +85,24 @@ const Login = () => {
     }
     return (
         <div>
-            <div className='text-black text-1xl font-bold flex gap-4 justify-center bg-gray-300 rounded-md p-4  '>
-                <div className='border-black border p-4 rounded-md'>
-                    <p>Seller Email: seller22@gmail.com</p>
+            <div className='text-black text-1xl font-bold flex gap-4 justify-center bg-gray-300 rounded-md p-1 md:p-4  '>
+                <div className='border-black border p-4 rounded-md '>
+                    <p >Seller Email: <span className='text-indigo-600'>seller22@gmail.com</span></p>
                     <p>Seller password:123456</p>
                 </div>
                 <div className='border-black border p-4 rounded-md'>
-                    <p>Buyer Email: buyer13@gmail.com</p>
+                    <p>Buyer Email: <span className='text-indigo-600'>buyer13@gmail.com</span> </p>
                     <p>Buyer password:123456</p>
                 </div>
                 <div className='border-black border p-4 rounded-md'>
-                    <p>admin: admin@gmail.com</p>
+                    <p>admin: <span className='text-indigo-600'> admin@gmail.com</span></p>
                     <p>admin password:123456789</p>
                 </div>
 
             </div>
-            <div className=' mx-8 my-6 p-8 shadow-xl bg-base-200 rounded-2xl'>
+            <div className='  my-6 p-1 md:p-8 max-w-[900px] mx-auto  bg-base-200 rounded-2xl'>
                 <div className=" grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2 ">
-                    <div className="border bg-base-200 rounded-2xl p-6 border-grey">
+                    <div className="border bg-base-200 rounded-2xl p-3 md:p-6 border-grey">
                         <h1 className='text-3xl  font-bold text-center'>Login</h1>
                         <form onSubmit={haldelLogin}>
                             <div className="">

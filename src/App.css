@@ -7,6 +7,14 @@
   pointer-events: none;
 }
 
+
+.slick-arrow{
+ background-color: rgb(255, 255, 255) !important;
+ border-radius: 2px;
+
+ 
+  
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

@@ -4,14 +4,17 @@ import Allcategory from '../Allcategory';
 import FeauturePoducts from '../FeauturePoducts';
 import Caution from './Caution';
 
+
+
 const Home = () => {
     return (
         <div>
            
             <Carosel></Carosel>
             <Allcategory></Allcategory>
-            <FeauturePoducts></FeauturePoducts>
+            <FeauturePoducts></FeauturePoducts> 
             <Caution></Caution>
+            
         </div>
     );
 };
