@@ -36,6 +36,7 @@ const Header = () => {
         <>
             <ScrollToTop>
 
+                <NavLink className={`mr-4 rounded-md {isactive ? "active":"deactive"}`} to='/'>Home</NavLink>
                 <NavLink className={`mr-4 rounded-md {isactive ? "active":"deactive"}`} to='/blog'>Blog</NavLink>
                 {
                     user?.email ?

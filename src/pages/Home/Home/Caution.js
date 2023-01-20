@@ -4,7 +4,7 @@ import FeadbackCarusal from '../FeadbackCarusal';
 const Caution = () => {
     return (
         <>
-            <div className='max-w-[1000px] mx-auto my-8 rounded-2xl shadow-2xl bg-white'>
+            <div className='max-w-[1100px] mx-auto my-8 rounded-2xl shadow-2xl bg-white'>
                 <div className="w-full  justify-center rounded-2xl shadow">
                     <div className="hero ">
                         <div className="hero-content flex-col justify-between lg:flex-row-reverse">
@@ -38,7 +38,7 @@ const Caution = () => {
                 </div>
             </div>
             <h1 className='ml-3 text-3xl mt-12 font-bold text-black'> Feadback</h1>
-            <div className='max-w-[1000px] mx-auto my-8 shadow-2xl bg-white rounded-2xl'>
+            <div className='max-w-[1100px] mx-auto my-8 shadow-2xl bg-white rounded-2xl'>
                 <FeadbackCarusal></FeadbackCarusal>
             </div>
             <h1 className='text-2xl ml-3 font-bold text-orange-600'>Cution</h1>

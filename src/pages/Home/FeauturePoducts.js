@@ -22,7 +22,7 @@ const FeauturePoducts = () => {
  
 
     return (
-        <div style={{maxWidth:"1240px", margin:"auto"}} className=' mt-6 mb-3'>
+        <div className=' mt-6 mb-3'>
             <h1 className='text-3xl font-bold ml-3'>Feauter Products</h1>
             <div className='m-6 p-3  gap-4 max-w[1240px] w-[90%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                {
