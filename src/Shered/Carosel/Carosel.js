@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 
 const Carosel = () => {
     return (
-        <div className="mb-3 mt-3 rounded-md">
+        <div className="mb-3 mt-3 p-8 rounded-md max-w-[1100px] mx-auto">
             <Swiper
                 spaceBetween={60}
                 centeredSlides={true}

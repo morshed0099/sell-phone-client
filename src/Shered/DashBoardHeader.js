@@ -28,13 +28,13 @@ const DashBoardHeader = () => {
     }
     const menuItem =
         <>
-            <NavLink to='/'>Home</NavLink>
+            <NavLink className={`mr-4 rounded-md  {isactive ? "active":"deactive"}`} to='/'>Home</NavLink>
             {
                 user?.email ?
                     <>
 
-                        <NavLink to='/dashboard'>Dashboard</NavLink>
-                        <button onClick={handelLout} className='btn btn-ghost'>logOut</button>
+                        <NavLink className={`mr-4 rounded-md  {isactive ? "active":"deactive"}`} to='/dashboard'>Dashboard</NavLink>
+                        <button onClick={handelLout} className='btn rounded-md btn-ghost'>logOut</button>
                     </>
                     :
                     <>

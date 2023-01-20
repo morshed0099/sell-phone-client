@@ -8,12 +8,20 @@
 }
 
 
-.slick-arrow{
- background-color: rgb(255, 255, 255) !important;
- border-radius: 2px;
-
- 
+.swiper-button-next{
+ display: none !important;
   
+}
+.swiper-button-prev{
+  display: none !important;
+}
+.active{
+  background-color: rgb(9, 9, 205);
+   
+   
+}
+.deactive{
+ 
 }
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
