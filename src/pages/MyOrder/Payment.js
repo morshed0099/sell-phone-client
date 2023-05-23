@@ -12,8 +12,8 @@ const Payment = () => {
     const { produnctName, newPrice } = payment.book
     console.log(payment.book, "lin e 6");
     return (
-        <div>
-            <h3 className='text-3xl mt-4 font-semibold mb-3 '>{produnctName}</h3>
+        <div className='p-6 border rounded-2xl shadow-md mx-8'>
+            <h3 className='text-3xlmt-4 font-semibold mb-3 '>{produnctName}</h3>
             <h3 className='text-3xl font-semibold '><strong>{newPrice}</strong>$ For Your Booking</h3>
             <div  className='w-96 text-green-700 my-6 '>
                 <Elements stripe={stripePromise}>
