@@ -16,13 +16,13 @@
   display: none !important;
 }
 .active{
-  background-color: rgb(9, 9, 205);
-   
+  background-color: rgb(9, 9, 205);  
    
 }
-.deactive{
- 
+.causal-height{
+  height: 100vh;
 }
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

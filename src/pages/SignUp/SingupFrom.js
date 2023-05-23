@@ -30,7 +30,7 @@ const SingupFrom = () => {
         const password = form.password.value;
         const formData = new FormData()
         formData.append('image', image);
-        console.log(formData);
+        console.log(formData,'line 33');
         const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_KEY}`
         fetch(url, {
             method: "POST",

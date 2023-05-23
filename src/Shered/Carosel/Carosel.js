@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 
 const Carosel = () => {
     return (
-        <div className="mb-3 mt-3 p-8 rounded-md max-w-[1100px] mx-auto">
+        <div className="mb-3 mt-3 p-8 rounded-md max-w-[1480px] mx-auto">
             <Swiper
                 spaceBetween={60}
                 centeredSlides={true}
@@ -32,8 +32,8 @@ const Carosel = () => {
                 modules={[Autoplay, Pagination, Navigation]}
                 className="mySwiper"
             >
-                <SwiperSlide className="w-full h-[70vh]">
-                    <div className="hero">
+                <SwiperSlide className="w-full mx-auto">
+                    <div className=" w-full h-[100vh] py-0">
                         <div className="hero-content flex-col lg:flex-row">
                             <img alt="" src={img} className="lg:w-1/2" />
                             <div>
@@ -44,8 +44,8 @@ const Carosel = () => {
                         </div>
                     </div>
                 </SwiperSlide>
-                <SwiperSlide className="w-full h-[70vh]">
-                    <div className="hero">
+                <SwiperSlide className="w-full mx-auto">
+                    <div className=" h-[100vh] w-full">
                         <div className="hero-content flex-col lg:flex-row">
                             <img alt="" src={img1} className="lg:w-1/2" />
                             <div>
@@ -56,10 +56,10 @@ const Carosel = () => {
                         </div>
                     </div>
                 </SwiperSlide>
-                <SwiperSlide className="w-full h-[70vh]">
-                    <div className="hero">
+                <SwiperSlide className="w-full mx-auto">
+                    <div className=" lg:h-[100vh] w-full">
                         <div className="hero-content flex-col lg:flex-row">
-                            <img alt="" src={img2} className="lg:w-1/2 h-[300px]" />
+                            <img alt="" src={img2} className="lg:w-1/2 h-[400px] " />
                             <div>
                             <h1 className="text-5xl font-bold">Sell Here And Buy Here!</h1>
                                 <p className="py-6">sell old one and buy another one </p>

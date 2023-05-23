@@ -6,7 +6,7 @@ const Addvertise = ({ product}) => {
 
     const { imgae_url, newPrice, oldprice,  produnctName,  _id } = product
     return (
-        <div className="card  bg-base-100 shadow-xl">
+        <div className="card max-w-[1400px]  bg-base-100 shadow-md">
             <figure><img src={imgae_url} alt="Shoes" className='h-[200px] w-full' /></figure>
             <div className="card-body">
                 <h2 className="card-title">
