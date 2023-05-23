@@ -9,12 +9,18 @@ import Caution from './Caution';
 const Home = () => {
     return (
         <div>
-           
+
             <Carosel></Carosel>
-            <Allcategory></Allcategory>
-            <FeauturePoducts></FeauturePoducts> 
-            <Caution></Caution>
-            
+            <div className='px-4'>
+                <Allcategory></Allcategory>
+            </div>
+            <div className='px-4'>
+                <FeauturePoducts></FeauturePoducts>
+            </div>
+            <div className='px-4'>
+                <Caution></Caution>
+            </div>
+
         </div>
     );
 };
